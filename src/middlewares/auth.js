@@ -36,7 +36,7 @@ const verifyToken = async (req, res, next) => {
 const restrictTO = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      res.status(codes.FORBUDDEN_RES).json({
+      res.status(codes.FORBIDDEN_RES).json({
         message: "You do not have permision to perform this operation",
       });
     }

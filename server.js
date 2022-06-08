@@ -14,7 +14,7 @@ routes(app);
 
 // server
 
-app.listen(process.env.PORT, async () => {
+app.listen(process.env.PORT || 3000, async () => {
   console.log(`server running on port ${process.env.PORT}`);
   await sequelize.authenticate();
   console.log("Database Connected");

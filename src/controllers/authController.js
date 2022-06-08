@@ -1,4 +1,4 @@
-const { User } = require("./../../models");
+const { User, Kyc } = require("./../../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { message, codes } = require("./../utils/constants");
@@ -12,6 +12,7 @@ const signup = async (req, res, next) => {
       role: req.body.role,
       password: await bcrypt.hash(req.body.password, 12),
     });
+    await Kyc.create({ ...req.body, userID: newUser.id });
     res.status(codes.SUCCESS_CODE).json({
       status: message.SUCCESS,
       data: {

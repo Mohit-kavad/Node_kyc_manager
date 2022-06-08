@@ -1,7 +1,7 @@
 const codes = {
   FAIL_CODE: 400,
   UNAUTHORIZED_CODE: 401,
-  FORBUDDEN_RES: 403,
+  FORBIDDEN_RES: 403,
   NOT_FOUND_CODE: 404,
   SUCCESS_CODE: 200,
   INTERNAL_SERVER_ERROR_CODE: 500,
@@ -17,10 +17,13 @@ const message = {
   SUCCESS: "success",
   LOGIN_SUCCESS: "Logged in successfully",
   DELETE_SUCCESS: "Deleted successfully",
+  UPDATE_SUCCESS: "Data Updated successfully",
 
   // Error Messages
   USER_NOT_FOUND: "user not found",
   PASS_INCORRECT: "Password Incorect",
+  KYC_ERROR: "please Provide Valid PAN card or This PAN already Used!",
+  KYC_STATUS: "Your Kyc is already Approved",
 };
 
 module.exports = {

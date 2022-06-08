@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ User }) {
       // define association here
-      this.belongsTo(User, { foreignKey: "userID" });
+      this.belongsTo(User, { foreignKey: "userID", as: "user" });
     }
   }
   Kyc.init(
@@ -18,17 +18,47 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      docimg: {
+      panimage: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: null,
       },
-      details: {
+      pandetails: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: null,
+      },
+      passbookimg: {
+        type: DataTypes.STRING,
+        defaultValue: null,
+      },
+      ifsc: {
+        type: DataTypes.STRING,
+        defaultValue: null,
+      },
+      accountNo: {
+        type: DataTypes.INTEGER,
+        defaultValue: null,
+      },
+      holderName: {
+        type: DataTypes.STRING,
+        defaultValue: null,
+      },
+      branch: {
+        type: DataTypes.STRING,
+        defaultValue: null,
       },
       status: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: "pending",
+        validate: {
+          status(value) {
+            const statusArray = ["pending", "approve", "reject"];
+            if (!statusArray.includes(value)) {
+              throw new Error(
+                'plese enter valid status "pending,approve or reject"'
+              );
+            }
+          },
+        },
       },
       userID: {
         type: DataTypes.INTEGER,
